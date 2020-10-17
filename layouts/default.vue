@@ -1,92 +1,46 @@
 <template>
   <div>
-    <vs-navbar padding-scroll fixed shadow-scroll square v-model="active">
+    <vs-navbar padding-scroll fixed shadow-scroll square v-model="navActive">
       <template #left>
-        <img height="30" src="https://vuesax.com/logos/logo-vuesax-svg-3.svg" alt="">
+        <div
+          style="display: flex;justify-content: center; align-items: center;font-size: 20px;font-weight: bold;background-color: rgba(0, 0, 0, .1);border-radius: 10px;padding: 5px 10px">
+          xxACG
+        </div>
       </template>
-      <vs-navbar-item :active="active === 'guide'" id="guide">
-        Guide
+      <vs-navbar-item to="discovery" :active="navActive === 'discovery'" id="discovery">
+        探索
       </vs-navbar-item>
-      <vs-navbar-item :active="active === 'docs'" id="docs">
-        Documents
+      <vs-navbar-item to="daily" :active="navActive === 'daily'" id="daily">
+        今日推荐
       </vs-navbar-item>
-      <vs-navbar-item :active="active === 'components'" id="components">
-        Components
-      </vs-navbar-item>
-      <vs-navbar-group>
-        Classifies
-        <template #items>
-          <vs-navbar-item :active="active == 'Github'" id="Github">
-            Github
-          </vs-navbar-item>
-          <vs-navbar-item :active="active == 'Discord'" id="Discord">
-            Discord
-          </vs-navbar-item>
-          <vs-navbar-item :active="active == 'Twitter'" id="Twitter">
-            Twitter
-          </vs-navbar-item>
-          <vs-navbar-item :active="active == 'Medium'" id="Medium">
-            Medium
-          </vs-navbar-item>
-        </template>
-      </vs-navbar-group>
-      <vs-navbar-item :active="active === 'license'" id="license">
-        license
+      <vs-navbar-item to="catalog" :active="navActive === 'catalog'" id="catalog">
+        库
       </vs-navbar-item>
       <template #right>
-        <vs-button flat>Login</vs-button>
-        <vs-button>Get Started</vs-button>
+        <vs-button flat>登录</vs-button>
+        <vs-button>加入 xxACG</vs-button>
       </template>
     </vs-navbar>
 
-    <Nuxt/>
-    <Nuxt/>
+    <div style="margin-top: 84px">
+      <Nuxt/>
+    </div>
 
   </div>
 </template>
 
 <script>
+import Vue from 'vue';
+
 export default {
   data: () => ({
-    active: 'guide'
-  })
+    navActive: 'discovery'
+  }),
+  created() {
+    Vue.config.ignoredElements = ['ion-icon'];
+  }
 }
 </script>
 
-<style>
-.child {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-html, body {
-  font-family: 'Source Sans Pro',
-  -apple-system,
-  BlinkMacSystemFont,
-  'Segoe UI',
-  Roboto,
-  'Helvetica Neue',
-  Arial,
-  sans-serif;
-}
-
-html {
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  box-sizing: border-box;
-  background-color: #f4f7f8;
-}
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-}
+<style scoped>
 </style>
