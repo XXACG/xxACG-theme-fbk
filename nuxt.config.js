@@ -24,12 +24,23 @@ export default {
     '@/plugins/vuesax'
   ],
 
+  // Extended router
+  router: {
+    extendRoutes(routes, resolve) {
+      routes.push({
+        name: 'home',
+        path: '/',
+        redirect: '/daily'
+        // component: resolve(__dirname, 'pages/daily.vue')
+      })
+    }
+  },
+
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
 
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
-  buildModules: [
-  ],
+  buildModules: [],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [

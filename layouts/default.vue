@@ -1,6 +1,6 @@
 <template>
   <div>
-    <vs-navbar padding-scroll fixed shadow-scroll square v-model="navActive">
+    <vs-navbar padding-scroll fixed shadow-scroll square center-collapsed v-model="navActive">
       <template #left>
         <div
           style="display: flex;justify-content: center; align-items: center;font-size: 20px;font-weight: bold;background-color: rgba(0, 0, 0, .1);border-radius: 10px;padding: 5px 10px">
@@ -33,11 +33,14 @@
 import Vue from 'vue';
 
 export default {
-  data: () => ({
-    navActive: 'discovery'
-  }),
   created() {
     Vue.config.ignoredElements = ['ion-icon'];
+  },
+  data: () => ({
+    navActive: null
+  }),
+  mounted() {
+    this.navActive = this.$route.path.substr(1);
   }
 }
 </script>
