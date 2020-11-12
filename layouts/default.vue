@@ -2,10 +2,14 @@
   <nav>
     <div class="navigation-buttons">
       <button-icon @click.native="go('back')">
-        <ion-icon name="chevron-back"></ion-icon>
+        <icon-frame>
+          <ion-icon name="chevron-back"></ion-icon>
+        </icon-frame>
       </button-icon>
       <button-icon @click.native="go('forward')">
-        <ion-icon name="chevron-forward"></ion-icon>
+        <icon-frame>
+          <ion-icon name="chevron-forward"></ion-icon>
+        </icon-frame>
       </button-icon>
     </div>
     <div class="navigation-links">
@@ -20,12 +24,11 @@
       </router-link>
     </div>
     <div class="right-part">
-      <a href="https://github.com/qier222/YesPlayMusic" target="blank" v-if="true">
-        <ion-icon name="logo-github"></ion-icon>
-      </a>
       <div class="search-box">
         <div class="container" :class="{ active: inputFocus }">
-          <ion-icon name="search-outline"></ion-icon>
+          <icon-frame>
+            <ion-icon name="search"></ion-icon>
+          </icon-frame>
           <div class="input">
             <input
               :placeholder="inputFocus ? '' : '搜索'"
@@ -44,12 +47,14 @@
 <script>
 import Vue from 'vue';
 import ButtonIcon from "@/components/ButtonIcon";
+import IconFrame from "@/components/IconFrame";
 
 export default {
   created() {
     Vue.config.ignoredElements = ['ion-icon'];
   },
   components: {
+    IconFrame,
     ButtonIcon,
   },
   data() {
