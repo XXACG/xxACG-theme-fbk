@@ -1,10 +1,12 @@
 <template>
-
+  <div>
+    Page not exists
+  </div>
 </template>
 
 <script>
 export default {
-  name: "home"
+  name: "404"
 }
 </script>
 

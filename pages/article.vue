@@ -1,10 +1,12 @@
 <template>
-
+  <div>
+    专栏页面
+  </div>
 </template>
 
 <script>
 export default {
-  name: "explore"
+  name: "article"
 }
 </script>
 

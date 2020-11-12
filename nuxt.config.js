@@ -10,7 +10,10 @@ export default {
     link: [
       {rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'}
     ],
-    script: [{src: 'https://unpkg.com/ionicons@5.2.3/dist/ionicons.js'}]
+    script: [
+      // {src: 'https://unpkg.com/ionicons@5.2.3/dist/ionicons.js'},
+      {src: 'https://bmss2-1253315888.file.myqcloud.com/static/libs/ionicons%405.2.3/dist/ionicons.js'},
+    ]
   },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
@@ -32,8 +35,12 @@ export default {
       routes.push({
         name: 'home',
         path: '/',
-        redirect: '/daily'
-        // component: resolve(__dirname, 'pages/daily.vue')
+        redirect: '/home'
+      })
+      routes.push({
+        name: 'error',
+        path: '*',
+        component: resolve(__dirname, 'pages/error/err404')
       })
     }
   },

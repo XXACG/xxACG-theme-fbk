@@ -1,222 +1,124 @@
 <template>
-  <nav>
-    <div class="navigation-buttons">
-      <button-icon @click.native="go('back')">
-        <icon-frame>
-          <ion-icon name="chevron-back"></ion-icon>
-        </icon-frame>
-      </button-icon>
-      <button-icon @click.native="go('forward')">
-        <icon-frame>
-          <ion-icon name="chevron-forward"></ion-icon>
-        </icon-frame>
-      </button-icon>
-    </div>
-    <div class="navigation-links">
-      <router-link to="/" :class="{ active: this.$route.name === 'daily' }">
-        首页
-      </router-link>
-      <router-link to="/explore" :class="{ active: this.$route.name === 'explore' }">
-        发现
-      </router-link>
-      <router-link to="/library" :class="{ active: this.$route.name === 'library' }">
-        库
-      </router-link>
-    </div>
-    <div class="right-part">
-      <div class="search-box">
-        <div class="container" :class="{ active: inputFocus }">
-          <icon-frame>
-            <ion-icon name="search"></ion-icon>
-          </icon-frame>
-          <div class="input">
-            <input
-              :placeholder="inputFocus ? '' : '搜索'"
-              v-model="keywords"
-              @keydown.enter="goToSearchPage"
-              @focus="inputFocus = true"
-              @blur="inputFocus = false"
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-  </nav>
+  <div id="app">
+    <Navbar/>
+    <main>
+      <keep-alive>
+        <router-view v-if="$route.meta.keepAlive"></router-view>
+      </keep-alive>
+      <router-view v-if="!$route.meta.keepAlive"></router-view>
+    </main>
+  </div>
 </template>
 
 <script>
-import Vue from 'vue';
-import ButtonIcon from "@/components/ButtonIcon";
-import IconFrame from "@/components/IconFrame";
+import Navbar from "@/components/Navbar";
 
 export default {
-  created() {
-    Vue.config.ignoredElements = ['ion-icon'];
-  },
-  components: {
-    IconFrame,
-    ButtonIcon,
-  },
-  data() {
-    return {
-      inputFocus: false,
-      keywords: "",
-      langs: ["zh-CN", "en"],
-    };
-  },
-  methods: {
-    go(where) {
-      if (where === "back") this.$router.go(-1);
-      else this.$router.go(1);
-    },
-    goToSearchPage() {
-      if (!this.keywords) return;
-      if (
-        this.$route.name === "search" &&
-        this.$route.query.keywords === this.keywords
-      )
-        return;
-      this.$router.push({
-        name: "search",
-        query: {keywords: this.keywords},
-      });
-    },
-  },
+  components: {Navbar}
 }
 </script>
 
 <style lang="scss" scoped>
-nav {
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 64px;
+@import url("https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,500;0,600;0,700;0,800;0,900;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+:root {
+  --color-body-bg: #ffffff;
+  --color-text: #000;
+  --color-primary: #335eea;
+  --color-primary-bg: #eaeffd;
+  --color-secondary: #7a7a7b;
+  --color-secondary-bg: #f5f5f7;
+  --color-navbar-bg: rgba(255, 255, 255, 0.86);
+}
+
+[data-theme="dark"] {
+  --color-body-bg: #222222;
+  --color-text: #ffffff;
+  --color-primary: #335eea;
+  --color-primary-bg: #bbcdff;
+  --color-secondary: #7a7a7b;
+  --color-secondary-bg: #323232;
+  --color-navbar-bg: #335eea;
+  --color-navbar-bg: rgba(34, 34, 34, 0.86);
+}
+
+#app {
+  font-family: "Barlow", -apple-system, BlinkMacSystemFont, Helvetica Neue,
+  PingFang SC, Microsoft YaHei, Source Han Sans SC, Noto Sans CJK SC,
+  WenQuanYi Micro Hei, sans-serif;
+  width: 100%;
+  transition: all 0.4s;
+}
+
+body {
+  background-color: var(--color-body-bg);
+}
+
+html {
+  overflow-y: overlay;
+  min-width: 1000px;
+}
+
+main {
+  margin-top: 96px;
+  margin-bottom: 96px;
   padding: {
     right: 10vw;
     left: 10vw;
   }
-  backdrop-filter: saturate(180%) blur(30px);
-
-  // background: var(--color-body-bg);
-  // background-color: rgba(255, 255, 255, 0.86);
-  background-color: var(--color-navbar-bg);
-  z-index: 100;
 }
 
-.navigation-buttons {
-  flex: 1;
-  display: flex;
-  align-items: center;
-
-  .svg-icon {
-    height: 24px;
-    width: 24px;
-  }
+select,
+button {
+  font-family: inherit;
 }
 
-.navigation-links {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  text-transform: uppercase;
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
 
-  a {
-    font-size: 18px;
-    font-weight: 700;
-    text-decoration: none;
-    border-radius: 6px;
-    padding: 6px 10px;
-    color: var(--color-text);
-    transition: 0.2s;
-    margin: {
-      right: 12px;
-      left: 12px;
-    }
-
-    &:hover {
-      background: var(--color-secondary-bg);
-    }
-
-    &:active {
-      transform: scale(0.92);
-      transition: 0.2s;
-    }
-  }
-
-  a.active {
-    color: var(--color-primary);
+input,
+button {
+  &:focus {
+    outline: none;
   }
 }
 
-.search {
-  .svg-icon {
-    height: 18px;
-    width: 18px;
+a {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
   }
 }
 
-.search-box {
-  display: flex;
-
-  justify-content: flex-end;
-
-  .container {
-    display: flex;
-    align-items: center;
-    height: 32px;
-    background: var(--color-secondary-bg);
-    border-radius: 8px;
-    width: 200px;
-    transition: all .2s;
-  }
-
-  .svg-icon {
-    height: 15px;
-    width: 15px;
-    color: var(--color-text);
-    opacity: 0.28;
-    margin: {
-      left: 8px;
-      right: 4px;
-    }
-  }
-
-  input {
-    font-size: 16px;
-    border: none;
-    background: transparent;
-    width: 96%;
-    font-weight: 600;
-    margin-top: -1px;
-    color: var(--color-text);
-  }
-
-  .active {
-    background: var(--color-primary-bg);
-
-    input,
-    .svg-icon {
-      opacity: 1;
-      color: var(--color-primary);
-    }
-  }
+/* Let's get this party started */
+::-webkit-scrollbar {
+  width: 8px;
 }
 
-.right-part {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
+::-webkit-scrollbar-track {
+  background: transparent;
+  border-left: 1px solid rgba(128, 128, 128, 0.18);
+}
 
-  .github {
-    margin-right: 16px;
-    height: 24px;
-    width: 24px;
-    color: var(--color-text);
-  }
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  background: var(--color-secondary-bg);
+}
+
+.slide-up-enter-active,
+.slide-up-leave-active {
+  transition: all 0.4s;
+}
+
+.slide-up-enter, .slide-up-leave-to /* .fade-leave-active below version 2.1.8 */
+{
+  transform: translateY(100%);
 }
 </style>
