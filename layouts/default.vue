@@ -1,49 +1,220 @@
 <template>
-  <div>
-    <vs-navbar padding-scroll fixed shadow-scroll square center-collapsed v-model="navActive">
-      <template #left>
-        <div
-          style="display: flex;justify-content: center; align-items: center;font-size: 20px;font-weight: bold;background-color: rgba(0, 0, 0, .1);border-radius: 10px;padding: 5px 10px">
-          xxACG
-        </div>
-      </template>
-      <vs-navbar-item to="discovery" :active="navActive === 'discovery'" id="discovery">
-        探索
-      </vs-navbar-item>
-      <vs-navbar-item to="daily" :active="navActive === 'daily'" id="daily">
-        今日推荐
-      </vs-navbar-item>
-      <vs-navbar-item to="catalog" :active="navActive === 'catalog'" id="catalog">
-        库
-      </vs-navbar-item>
-      <template #right>
-        <vs-button flat>登录</vs-button>
-        <vs-button>加入 xxACG</vs-button>
-      </template>
-    </vs-navbar>
-
-    <div style="margin-top: 84px">
-      <Nuxt/>
+  <nav>
+    <div class="navigation-buttons">
+      <button-icon @click.native="go('back')">
+        <svg-icon icon-class="arrow-left"/>
+      </button-icon>
+      <button-icon @click.native="go('forward')">
+        <svg-icon icon-class="arrow-right"/>
+      </button-icon>
     </div>
-
-  </div>
+    <div class="navigation-links">
+      <router-link to="/" :class="{ active: this.$route.name === 'daily' }">
+        首页
+      </router-link>
+      <router-link to="/explore" :class="{ active: this.$route.name === 'explore' }">
+        发现
+      </router-link>
+      <router-link to="/library" :class="{ active: this.$route.name === 'library' }">
+        库
+      </router-link>
+    </div>
+    <div class="right-part">
+      <a href="https://github.com/qier222/YesPlayMusic" target="blank" v-if="true">
+        <svg-icon icon-class="github" class="github"/>
+      </a>
+      <div class="search-box">
+        <div class="container" :class="{ active: inputFocus }">
+          <svg-icon icon-class="search"/>
+          <div class="input">
+            <input
+              :placeholder="inputFocus ? '' : '搜索'"
+              v-model="keywords"
+              @keydown.enter="goToSearchPage"
+              @focus="inputFocus = true"
+              @blur="inputFocus = false"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
 </template>
 
 <script>
 import Vue from 'vue';
+import ButtonIcon from "@/components/ButtonIcon";
 
 export default {
   created() {
     Vue.config.ignoredElements = ['ion-icon'];
   },
-  data: () => ({
-    navActive: null
-  }),
   mounted() {
     this.navActive = this.$route.path.substr(1);
-  }
+  },
+  components: {
+    ButtonIcon,
+  },
+  data() {
+    return {
+      inputFocus: false,
+      keywords: "",
+      langs: ["zh-CN", "en"],
+    };
+  },
+  methods: {
+    go(where) {
+      if (where === "back") this.$router.go(-1);
+      else this.$router.go(1);
+    },
+    goToSearchPage() {
+      if (!this.keywords) return;
+      if (
+        this.$route.name === "search" &&
+        this.$route.query.keywords === this.keywords
+      )
+        return;
+      this.$router.push({
+        name: "search",
+        query: {keywords: this.keywords},
+      });
+    },
+  },
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+nav {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 64px;
+  padding: {
+    right: 10vw;
+    left: 10vw;
+  }
+  backdrop-filter: saturate(180%) blur(30px);
+
+  // background: var(--color-body-bg);
+  // background-color: rgba(255, 255, 255, 0.86);
+  background-color: var(--color-navbar-bg);
+  z-index: 100;
+}
+
+.navigation-buttons {
+  flex: 1;
+  display: flex;
+  align-items: center;
+
+  .svg-icon {
+    height: 24px;
+    width: 24px;
+  }
+}
+
+.navigation-links {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  text-transform: uppercase;
+
+  a {
+    font-size: 18px;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 6px;
+    padding: 6px 10px;
+    color: var(--color-text);
+    transition: 0.2s;
+    margin: {
+      right: 12px;
+      left: 12px;
+    }
+
+    &:hover {
+      background: var(--color-secondary-bg);
+    }
+
+    &:active {
+      transform: scale(0.92);
+      transition: 0.2s;
+    }
+  }
+
+  a.active {
+    color: var(--color-primary);
+  }
+}
+
+.search {
+  .svg-icon {
+    height: 18px;
+    width: 18px;
+  }
+}
+
+.search-box {
+  display: flex;
+
+  justify-content: flex-end;
+
+  .container {
+    display: flex;
+    align-items: center;
+    height: 32px;
+    background: var(--color-secondary-bg);
+    border-radius: 8px;
+    width: 200px;
+    transition: all .2s;
+  }
+
+  .svg-icon {
+    height: 15px;
+    width: 15px;
+    color: var(--color-text);
+    opacity: 0.28;
+    margin: {
+      left: 8px;
+      right: 4px;
+    }
+  }
+
+  input {
+    font-size: 16px;
+    border: none;
+    background: transparent;
+    width: 96%;
+    font-weight: 600;
+    margin-top: -1px;
+    color: var(--color-text);
+  }
+
+  .active {
+    background: var(--color-primary-bg);
+
+    input,
+    .svg-icon {
+      opacity: 1;
+      color: var(--color-primary);
+    }
+  }
+}
+
+.right-part {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  .github {
+    margin-right: 16px;
+    height: 24px;
+    width: 24px;
+    color: var(--color-text);
+  }
+}
 </style>
