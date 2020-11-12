@@ -2,10 +2,10 @@
   <nav>
     <div class="navigation-buttons">
       <button-icon @click.native="go('back')">
-        <svg-icon icon-class="arrow-left"/>
+        <ion-icon name="chevron-back"></ion-icon>
       </button-icon>
       <button-icon @click.native="go('forward')">
-        <svg-icon icon-class="arrow-right"/>
+        <ion-icon name="chevron-forward"></ion-icon>
       </button-icon>
     </div>
     <div class="navigation-links">
@@ -21,11 +21,11 @@
     </div>
     <div class="right-part">
       <a href="https://github.com/qier222/YesPlayMusic" target="blank" v-if="true">
-        <svg-icon icon-class="github" class="github"/>
+        <ion-icon name="logo-github"></ion-icon>
       </a>
       <div class="search-box">
         <div class="container" :class="{ active: inputFocus }">
-          <svg-icon icon-class="search"/>
+          <ion-icon name="search-outline"></ion-icon>
           <div class="input">
             <input
               :placeholder="inputFocus ? '' : '搜索'"
@@ -48,9 +48,6 @@ import ButtonIcon from "@/components/ButtonIcon";
 export default {
   created() {
     Vue.config.ignoredElements = ['ion-icon'];
-  },
-  mounted() {
-    this.navActive = this.$route.path.substr(1);
   },
   components: {
     ButtonIcon,
