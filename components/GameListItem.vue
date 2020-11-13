@@ -7,15 +7,15 @@
     @mouseleave="hover = false"
   >
     <img
-      :src="'http://api.btstu.cn/sjtx/api.php?lx=c1&format=images&' + 'query=' + Math.random().toString(36).substr(2)"
-      @click="goToGameDetail" :class="{ hover: focus }"/>
+      :src="'http://api.btstu.cn/sjtx/api.php?lx=c1&format=images&' + 'v=' + Math.random().toString(36).substr(2)"
+      @click="goToGameDetail" class="hover" alt=""/>
     <div class="title-and-artist">
       <div class="container">
         <div class="title">
           {{ game.name }}
         </div>
         <div class="artist">
-          <ArtistsInLine :artists="[{id: 0, name: 'ANIPLEX'}, {id: 1, name: 'Key-soft'}]"/>
+          <PublishersInLine :artists="game.publisher"/>
         </div>
       </div>
       <div></div>
@@ -24,11 +24,11 @@
 </template>
 
 <script>
-import ArtistInLine from "@/components/ArtistsInLine";
+import PublishersInLine from "@/components/PublishersInLine";
 
 export default {
   name: "GameListItem",
-  components: {ArtistInLine},
+  components: {PublishersInLine},
   props: {
     game: Object,
   },

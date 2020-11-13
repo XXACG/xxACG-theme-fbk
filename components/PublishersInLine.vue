@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  name: "ArtistInLine",
+  name: "PublishersInLine",
   props: {
     artists: {
       type: Array,

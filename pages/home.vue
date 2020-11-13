@@ -24,21 +24,22 @@
       </div>
       <div class="songs">
         <GameList
-          :games="[
-            {id: 0, name: 'Plastic Memories', enable: true},
-            {id: 1, name: 'Plastic Memories', enable: true},
-            {id: 2, name: 'Plastic Memories', enable: true},
-            {id: 3, name: 'Plastic Memories', enable: true},
-            {id: 4, name: 'Plastic Memories', enable: false},
-            {id: 5, name: 'Plastic Memories', enable: true},
-            {id: 6, name: 'Plastic Memories', enable: false},
-            {id: 7, name: 'Plastic Memories', enable: true},
-            {id: 8, name: 'Plastic Memories', enable: true},
-           ]"
+          :games="
+          [
+            {
+              id: 0,
+              name: 'Plastic Memories',
+              description: 'Descriptions',
+              publisher: [
+                {id: 0, name: 'Key-soft'},
+                {id: 1, name: 'ANIPLEX'},
+              ],
+              downloads: ['http://url.com', 'http://url1.com'],
+              enable: true
+            },
+          ]"
           :type="'tracklist'"
           :itemWidth="220"
-          :id="likedSongsPlaylist.id"
-          dbclickTrackFunc="playPlaylistByID"
         />
       </div>
     </div>
@@ -115,7 +116,7 @@ export default {
   components: {GameList, GameListItem},
   data() {
     return {
-      show: false,
+      show: true,
       playlists: [],
       hasMorePlaylists: true,
       likedSongsPlaylist: {

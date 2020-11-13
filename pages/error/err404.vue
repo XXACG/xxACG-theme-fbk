@@ -1,12 +1,12 @@
 <template>
   <div>
-    Page not exists
+    Page is not exists
   </div>
 </template>
 
 <script>
 export default {
-  name: "404"
+  name: "err404"
 }
 </script>
 
