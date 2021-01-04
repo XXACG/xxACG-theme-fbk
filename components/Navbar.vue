@@ -101,9 +101,6 @@ nav {
     left: 10vw;
   }
   backdrop-filter: saturate(180%) blur(30px);
-
-  // background: var(--color-body-bg);
-  // background-color: rgba(255, 255, 255, 0.86);
   background-color: var(--color-navbar-bg);
   z-index: 100;
 }

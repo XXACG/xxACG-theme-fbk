@@ -14,33 +14,19 @@
 import Navbar from "@/components/Navbar";
 
 export default {
-  components: {Navbar}
+  components: {Navbar},
+  mounted() {
+    let appearance = 'dark'
+    document.body.setAttribute("data-theme", appearance);
+    document
+      .querySelector('meta[name="theme-color"]')
+      .setAttribute("content", appearance === "dark" ? "#222" : "#fff");
+  }
 }
 </script>
 
 <style lang="scss" scoped>
 @import url("https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,500;0,600;0,700;0,800;0,900;1,500;1,600;1,700;1,800;1,900&display=swap");
-
-:root {
-  --color-body-bg: #ffffff;
-  --color-text: #000;
-  --color-primary: #335eea;
-  --color-primary-bg: #eaeffd;
-  --color-secondary: #7a7a7b;
-  --color-secondary-bg: #f5f5f7;
-  --color-navbar-bg: rgba(255, 255, 255, 0.86);
-}
-
-[data-theme="dark"] {
-  --color-body-bg: #222222;
-  --color-text: #ffffff;
-  --color-primary: #335eea;
-  --color-primary-bg: #bbcdff;
-  --color-secondary: #7a7a7b;
-  --color-secondary-bg: #323232;
-  --color-navbar-bg: #335eea;
-  --color-navbar-bg: rgba(34, 34, 34, 0.86);
-}
 
 #app {
   font-family: "Barlow", -apple-system, BlinkMacSystemFont, Helvetica Neue,

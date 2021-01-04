@@ -4,7 +4,7 @@
       晚上好~
     </h1>
     <div class="section-one">
-      <div class="liked-songs" @click="goToDailyQueue">
+      <div class="daily-explore" @click="goToDailyQueue">
         <div class="top">
           <p>
             <span>希望有朝一日能和士道同学再次见面呢</span>
@@ -180,7 +180,7 @@ h1 {
   }
 }
 
-.liked-songs {
+.daily-explore {
   flex: 3;
   margin-top: 8px;
   cursor: pointer;
@@ -193,7 +193,7 @@ h1 {
   transition: all 0.4s;
   box-sizing: border-box;
 
-  background: var(--color-primary-bg);
+  background: var(--color-secondary-bg);
 
   .bottom {
     display: flex;

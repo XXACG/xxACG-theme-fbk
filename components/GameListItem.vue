@@ -198,7 +198,7 @@ button {
   }
 }
 
-.game.focus {
+.game:hover {
   transition: all 0.3s;
   background: var(--color-secondary-bg);
 }
@@ -250,51 +250,5 @@ button {
   width: 80px;
   display: flex;
   justify-content: flex-end;
-}
-
-//.game.playing {
-//  background: var(--color-primary-bg);
-//  color: var(--color-primary);
-//
-//  .title,
-//  .album,
-//  .time {
-//    color: var(--color-primary);
-//  }
-//
-//  .title .featured,
-//  .artist,
-//  .explicit-symbol {
-//    color: var(--color-primary);
-//    opacity: 0.88;
-//  }
-//
-//  .no span {
-//    color: var(--color-primary);
-//    opacity: 0.78;
-//  }
-//}
-
-.game:hover {
-  background: var(--color-primary-bg);
-  color: var(--color-primary);
-
-  .title,
-  .album,
-  .time {
-    color: var(--color-primary);
-  }
-
-  .title .featured,
-  .artist,
-  .explicit-symbol {
-    color: var(--color-primary);
-    opacity: 0.88;
-  }
-
-  .no span {
-    color: var(--color-primary);
-    opacity: 0.78;
-  }
 }
 </style>
