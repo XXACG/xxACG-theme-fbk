@@ -3,12 +3,12 @@
     <div class="navigation-buttons">
       <button-icon @click.native="go('back')">
         <icon-frame>
-          <ion-icon name="chevron-back"></ion-icon>
+          <ion-icon name="caret-back"></ion-icon>
         </icon-frame>
       </button-icon>
       <button-icon @click.native="go('forward')">
         <icon-frame>
-          <ion-icon name="chevron-forward"></ion-icon>
+          <ion-icon name="caret-forward"></ion-icon>
         </icon-frame>
       </button-icon>
     </div>
@@ -16,14 +16,19 @@
       <router-link to="/" :class="{ active: this.$route.name === 'home' }">
         首页
       </router-link>
-      <router-link to="/article" :class="{ active: this.$route.name === 'article' }">
-        专栏
+      <router-link to="/topic" :class="{ active: this.$route.name === 'topic' }">
+        茶谈
       </router-link>
       <router-link to="/library" :class="{ active: this.$route.name === 'library' }">
         库
       </router-link>
     </div>
     <div class="right-part">
+      <button-icon @click="appearance = 'dark'">
+        <icon-frame>
+          <ion-icon name="moon"></ion-icon>
+        </icon-frame>
+      </button-icon>
       <div class="search-box">
         <div class="container" :class="{ active: inputFocus }">
           <icon-frame>
@@ -48,6 +53,7 @@
 import Vue from 'vue';
 import ButtonIcon from "@/components/ButtonIcon";
 import IconFrame from "@/components/IconFrame";
+import {changeAppearance, THEME} from "@/utils/common";
 
 export default {
   name: "Navbar",
@@ -87,6 +93,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+ion-icon {
+  color: var(--color-text);
+  //--ionicon-stroke-width: 32px;
+}
+
 nav {
   position: fixed;
   top: 0;
@@ -100,9 +111,10 @@ nav {
     right: 10vw;
     left: 10vw;
   }
-  backdrop-filter: saturate(180%) blur(30px);
+  backdrop-filter: saturate(180%) blur(20px);
   background-color: var(--color-navbar-bg);
   z-index: 100;
+  -webkit-app-region: drag;
 }
 
 .navigation-buttons {
@@ -110,9 +122,8 @@ nav {
   display: flex;
   align-items: center;
 
-  .svg-icon {
-    height: 24px;
-    width: 24px;
+  button {
+    -webkit-app-region: no-drag;
   }
 }
 
@@ -121,8 +132,10 @@ nav {
   display: flex;
   justify-content: center;
   text-transform: uppercase;
+  user-select: none;
 
   a {
+    -webkit-app-region: no-drag;
     font-size: 18px;
     font-weight: 700;
     text-decoration: none;
@@ -136,7 +149,7 @@ nav {
     }
 
     &:hover {
-      background: var(--color-secondary-bg);
+      background: var(--color-secondary-bg-for-transparent);
     }
 
     &:active {
@@ -159,28 +172,16 @@ nav {
 
 .search-box {
   display: flex;
-
   justify-content: flex-end;
+  -webkit-app-region: no-drag;
 
   .container {
     display: flex;
     align-items: center;
     height: 32px;
-    background: var(--color-secondary-bg);
+    background: var(--color-secondary-bg-for-transparent);
     border-radius: 8px;
     width: 200px;
-    transition: all .2s;
-  }
-
-  .svg-icon {
-    height: 15px;
-    width: 15px;
-    color: var(--color-text);
-    opacity: 0.28;
-    margin: {
-      left: 8px;
-      right: 4px;
-    }
   }
 
   input {
@@ -194,12 +195,23 @@ nav {
   }
 
   .active {
-    background: var(--color-primary-bg);
+    background: var(--color-primary-bg-for-transparent);
 
     input,
     .svg-icon {
       opacity: 1;
       color: var(--color-primary);
+    }
+  }
+}
+
+[data-theme="dark"] {
+  .search-box {
+    .active {
+      input,
+      .svg-icon {
+        color: var(--color-text);
+      }
     }
   }
 }
@@ -215,6 +227,7 @@ nav {
     height: 24px;
     width: 24px;
     color: var(--color-text);
+    -webkit-app-region: no-drag;
   }
 }
 </style>

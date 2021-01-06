@@ -16,7 +16,6 @@ export default {
   components: {GameListItem},
   props: {
     games: Array,
-    type: String,
     itemWidth: {
       type: Number,
       default: -1,

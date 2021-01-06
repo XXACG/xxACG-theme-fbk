@@ -1,18 +1,19 @@
 export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
-    title: 'xxACG - GalGame sharing platform',
+    title: 'xxACG - GalGame sharing community',
     meta: [
       {charset: 'utf-8'},
       {name: 'viewport', content: 'width=device-width, initial-scale=1'},
+      {name: 'theme-color', content: '#fff'},
+      {name: 'http-equiv', content: 'IE=edge'},
       {hid: 'description', name: 'description', content: 'xxACG'}
     ],
     link: [
       {rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'}
     ],
     script: [
-      // {src: 'https://unpkg.com/ionicons@5.2.3/dist/ionicons.js'},
-      {src: 'https://bmss2-1253315888.file.myqcloud.com/static/libs/ionicons%405.2.3/dist/ionicons.js'},
+      {src: 'https://bmss2-1253315888.file.myqcloud.com/static/libs/ionicons@5.2.3/dist/ionicons/ionicons.js'},
     ]
   },
 
@@ -33,7 +34,7 @@ export default {
   router: {
     extendRoutes(routes, resolve) {
       routes.push({
-        name: 'home',
+        name: 'home-page',
         path: '/',
         redirect: '/home'
       })

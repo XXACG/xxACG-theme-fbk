@@ -12,22 +12,18 @@
 
 <script>
 import Navbar from "@/components/Navbar";
+import {changeAppearance, THEME} from "@/utils/common";
 
 export default {
   components: {Navbar},
   mounted() {
-    let appearance = 'dark'
-    document.body.setAttribute("data-theme", appearance);
-    document
-      .querySelector('meta[name="theme-color"]')
-      .setAttribute("content", appearance === "dark" ? "#222" : "#fff");
-  }
+    changeAppearance(THEME.light);
+  },
+  computed: {}
 }
 </script>
 
 <style lang="scss" scoped>
-@import url("https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,500;0,600;0,700;0,800;0,900;1,500;1,600;1,700;1,800;1,900&display=swap");
-
 #app {
   font-family: "Barlow", -apple-system, BlinkMacSystemFont, Helvetica Neue,
   PingFang SC, Microsoft YaHei, Source Han Sans SC, Noto Sans CJK SC,

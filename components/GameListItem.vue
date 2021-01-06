@@ -3,8 +3,6 @@
     class="game gamelist"
     :class="{'disable': !game.enable}"
     :style="trackStyle"
-    @mouseover="hover = true"
-    @mouseleave="hover = false"
   >
     <img
       :src="'http://api.btstu.cn/sjtx/api.php?lx=c1&format=images&' + 'v=' + Math.random().toString(36).substr(2)"
@@ -33,7 +31,9 @@ export default {
     game: Object,
   },
   data() {
-    return {hover: false, trackStyle: {}};
+    return {
+      trackStyle: {}
+    };
   },
   created() {
     if (this.$parent.itemWidth !== -1)

@@ -1,13 +1,13 @@
 <template>
   <div v-show="true">
     <h1>
-      晚上好~
+      标题
     </h1>
     <div class="section-one">
       <div class="daily-explore" @click="goToDailyQueue">
         <div class="top">
           <p>
-            <span>希望有朝一日能和士道同学再次见面呢</span>
+            <span>Hanbun gono tsuki</span>
           </p>
         </div>
         <div class="bottom">
@@ -37,71 +37,159 @@
               downloads: ['http://url.com', 'http://url1.com'],
               enable: true
             },
+            {
+              id: 1,
+              name: 'Plastic Memories',
+              description: 'Descriptions',
+              publisher: [
+                {id: 0, name: 'Key-soft'},
+                {id: 1, name: 'ANIPLEX'},
+              ],
+              downloads: ['http://url.com', 'http://url1.com'],
+              enable: true
+            },
+            {
+              id: 2,
+              name: 'Plastic Memories',
+              description: 'Descriptions',
+              publisher: [
+                {id: 0, name: 'Key-soft'},
+                {id: 1, name: 'ANIPLEX'},
+              ],
+              downloads: ['http://url.com', 'http://url1.com'],
+              enable: true
+            },
+            {
+              id: 3,
+              name: 'Plastic Memories',
+              description: 'Descriptions',
+              publisher: [
+                {id: 0, name: 'Key-soft'},
+                {id: 1, name: 'ANIPLEX'},
+              ],
+              downloads: ['http://url.com', 'http://url1.com'],
+              enable: true
+            },
+            {
+              id: 4,
+              name: 'Plastic Memories',
+              description: 'Descriptions',
+              publisher: [
+                {id: 0, name: 'Key-soft'},
+                {id: 1, name: 'ANIPLEX'},
+              ],
+              downloads: ['http://url.com', 'http://url1.com'],
+              enable: true
+            },
+            {
+              id: 5,
+              name: 'Plastic Memories',
+              description: 'Descriptions',
+              publisher: [
+                {id: 0, name: 'Key-soft'},
+                {id: 1, name: 'ANIPLEX'},
+              ],
+              downloads: ['http://url.com', 'http://url1.com'],
+              enable: true
+            },
+            {
+              id: 6,
+              name: 'Plastic Memories',
+              description: 'Descriptions',
+              publisher: [
+                {id: 0, name: 'Key-soft'},
+                {id: 1, name: 'ANIPLEX'},
+              ],
+              downloads: ['http://url.com', 'http://url1.com'],
+              enable: true
+            },
+            {
+              id: 7,
+              name: 'Plastic Memories',
+              description: 'Descriptions',
+              publisher: [
+                {id: 0, name: 'Key-soft'},
+                {id: 1, name: 'ANIPLEX'},
+              ],
+              downloads: ['http://url.com', 'http://url1.com'],
+              enable: true
+            },
+            {
+              id: 8,
+              name: 'Plastic Memories',
+              description: 'Descriptions',
+              publisher: [
+                {id: 0, name: 'Key-soft'},
+                {id: 1, name: 'ANIPLEX'},
+              ],
+              downloads: ['http://url.com', 'http://url1.com'],
+              enable: true
+            },
+            {
+              id: 9,
+              name: 'Plastic Memories',
+              description: 'Descriptions',
+              publisher: [
+                {id: 0, name: 'Key-soft'},
+                {id: 1, name: 'ANIPLEX'},
+              ],
+              downloads: ['http://url.com', 'http://url1.com'],
+              enable: true
+            },
+            {
+              id: 10,
+              name: 'Plastic Memories',
+              description: 'Descriptions',
+              publisher: [
+                {id: 0, name: 'Key-soft'},
+                {id: 1, name: 'ANIPLEX'},
+              ],
+              downloads: ['http://url.com', 'http://url1.com'],
+              enable: true
+            },
+            {
+              id: 11,
+              name: 'Plastic Memories',
+              description: 'Descriptions',
+              publisher: [
+                {id: 0, name: 'Key-soft'},
+                {id: 1, name: 'ANIPLEX'},
+              ],
+              downloads: ['http://url.com', 'http://url1.com'],
+              enable: true
+            },
+            {
+              id: 12,
+              name: 'Plastic Memories',
+              description: 'Descriptions',
+              publisher: [
+                {id: 0, name: 'Key-soft'},
+                {id: 1, name: 'ANIPLEX'},
+              ],
+              downloads: ['http://url.com', 'http://url1.com'],
+              enable: true
+            },
           ]"
-          :type="'tracklist'"
           :itemWidth="220"
         />
       </div>
     </div>
 
-    <div class="section-two" id="liked">
+    <div class="section-two" id="areas-block">
       <div class="tabs">
-        <div
-          class="tab"
-          :class="{ active: currentTab === 'playlists' }"
-          @click="updateCurrentTab('playlists')"
+        <div v-for="(area, k) in areas"
+             class="tab" :key="k"
+             :class="{ active: currentTab === area.area }"
+             @click="updateCurrentTab(area.area)"
         >
-          Playlists
-        </div>
-        <div
-          class="tab"
-          :class="{ active: currentTab === 'albums' }"
-          @click="updateCurrentTab('albums')"
-        >
-          Albums
-        </div>
-        <div
-          class="tab"
-          :class="{ active: currentTab === 'artists' }"
-          @click="updateCurrentTab('artists')"
-        >
-          Artists
-        </div>
-        <div
-          class="tab"
-          :class="{ active: currentTab === 'mvs' }"
-          @click="updateCurrentTab('mvs')"
-        >
-          MVs
+          {{ area.title }}
         </div>
       </div>
 
-      <div v-show="currentTab === 'playlists'">
-        <div v-if="5 > 1">
-          <CoverRow
-            :items="[]"
-            type="playlist"
-            subText="creator"
-            :showPlayButton="true"
-          />
-        </div>
-      </div>
-
-      <div v-show="currentTab === 'albums'">
-        <CoverRow
-          :items="albums"
-          type="album"
-          subText="artist"
-          :showPlayButton="true"
-        />
-      </div>
-
-      <div v-show="currentTab === 'artists'">
-        <CoverRow :items="artists" type="artist" :showPlayButton="true"/>
-      </div>
-
-      <div v-show="currentTab === 'mvs'">
-        <MvRow :mvs="mvs"/>
+      <div v-for="(area, k) in areas" :key="k"
+           v-show="currentTab === area.area"
+      >
+        {{ area.testContent }}
       </div>
     </div>
   </div>
@@ -116,6 +204,23 @@ export default {
   components: {GameList, GameListItem},
   data() {
     return {
+      areas: [
+        {
+          area: 'recommend1',
+          title: '推荐区 #1',
+          testContent: 'TestContent 1'
+        },
+        {
+          area: 'recommend2',
+          title: '推荐区 Test#2',
+          testContent: 'Tegerfgserhestfgtent 2'
+        },
+        {
+          area: 'recommend3',
+          title: '推荐区 Test#3',
+          testContent: 'TestContejbvdyjtybhvdtrghsergs 3'
+        },
+      ],
       show: true,
       playlists: [],
       hasMorePlaylists: true,
@@ -126,25 +231,21 @@ export default {
       likedSongs: [],
       likedSongIDs: [],
       lyric: undefined,
-      currentTab: "playlists",
+      currentTab: 'default',
       albums: [],
       artists: [],
       mvs: [],
     };
   },
+  created() {
+    this.currentTab = this.areas[0].area;
+  },
   methods: {
     updateCurrentTab(tab) {
       this.currentTab = tab;
       document
-        .getElementById("liked")
+        .getElementById("areas-block")
         .scrollIntoView({block: "start", behavior: "smooth"});
-      if (tab === "albums") {
-        if (this.albums.length === 0) this.loadLikedAlbums();
-      } else if (tab === "artists") {
-        if (this.artists.length === 0) this.loadLikedArtists();
-      } else if (tab === "mvs") {
-        if (this.mvs.length === 0) this.loadLikedMVs();
-      }
     },
     goToDailyQueue() {
       this.$router.push({path: "/explore"});

@@ -3,9 +3,11 @@
     <h1>
       <span>搜索</span> "{{ keywords }}"
     </h1>
-    <div class="section-title">厂商</div>
+    <div class="section-title">文章</div>
     balabala...
     <div class="section-title">游戏</div>
+    balabala...
+    <div class="section-title">厂商</div>
     balabala...
   </div>
 </template>
