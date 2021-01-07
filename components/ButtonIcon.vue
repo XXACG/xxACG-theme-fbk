@@ -1,12 +1,12 @@
 <template>
-  <button class="button-icon">
+  <button class="button-icon" @click="$emit('click')">
     <slot></slot>
   </button>
 </template>
 
 <script>
 export default {
-  name: "ButtonIcon",
+  name: "ButtonIcon"
 };
 </script>
 

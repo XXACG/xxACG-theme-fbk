@@ -186,10 +186,35 @@
         </div>
       </div>
 
-      <div v-for="(area, k) in areas" :key="k"
-           v-show="currentTab === area.area"
-      >
-        {{ area.testContent }}
+      <div v-show="currentTab === 'recommend1'">
+        <div class="row">
+          <div class="col-xs-6" style="padding: 0 .75rem">
+            <GameCard background="/img/002.png">
+              <h1 style="color: #fff">Test #1</h1>
+            </GameCard>
+          </div>
+          <div class="col-xs-6" style="padding: 0 .75rem">
+            <GameCard background="/img/005.png">
+              <h1 style="color: #fff">Test #2</h1>
+            </GameCard>
+          </div>
+          <div class="col-xs-6" style="padding: 0 .75rem">
+            <GameCard background="/img/015.jpg">
+              <h1 style="color: #fff">Test #3</h1>
+            </GameCard>
+          </div>
+          <div class="col-xs-6" style="padding: 0 .75rem">
+            <GameCard background="/img/002.png">
+              <h1 style="color: #fff">Test #4</h1>
+            </GameCard>
+          </div>
+        </div>
+      </div>
+
+      <div v-show="currentTab === 'card'">
+        <GameCard background="/img/015.jpg">
+          <h1 style="color: #fff">Test #2</h1>
+        </GameCard>
       </div>
     </div>
   </div>
@@ -208,17 +233,10 @@ export default {
         {
           area: 'recommend1',
           title: '推荐区 #1',
-          testContent: 'TestContent 1'
         },
         {
-          area: 'recommend2',
-          title: '推荐区 Test#2',
-          testContent: 'Tegerfgserhestfgtent 2'
-        },
-        {
-          area: 'recommend3',
+          area: 'card',
           title: '推荐区 Test#3',
-          testContent: 'TestContejbvdyjtybhvdtrghsergs 3'
         },
       ],
       show: true,

@@ -24,7 +24,7 @@
       </router-link>
     </div>
     <div class="right-part">
-      <button-icon @click="appearance = 'dark'">
+      <button-icon @click="switchAppearance">
         <icon-frame>
           <ion-icon name="moon"></ion-icon>
         </icon-frame>
@@ -71,6 +71,20 @@ export default {
       langs: ["zh-CN", "en"],
     };
   },
+  computed: {
+    appearance: {
+      get() {
+        return document.body.getAttribute('data-theme')
+      },
+      set(appearance) {
+        this.$store.commit("updateSettings", {
+          key: "appearance",
+          value: appearance,
+        });
+        changeAppearance(appearance);
+      }
+    }
+  },
   methods: {
     go(where) {
       if (where === "back") this.$router.go(-1);
@@ -88,6 +102,10 @@ export default {
         query: {keywords: this.keywords},
       });
     },
+    switchAppearance() {
+      console.log(this.appearance)
+      this.appearance = !(this.appearance === THEME.dark) ? THEME.dark : THEME.light;
+    }
   },
 }
 </script>

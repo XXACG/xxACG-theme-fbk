@@ -23,6 +23,7 @@ export default {
     '@/assets/css/main.scss',
     '@/assets/css/nprogress.css',
     '@/assets/css/slider.css',
+    '@/assets/css/grid.css',
   ],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
